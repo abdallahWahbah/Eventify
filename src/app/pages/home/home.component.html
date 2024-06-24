@@ -1,0 +1,118 @@
+<!-- css file: pages/home -->
+<app-header></app-header>
+
+<div class="home">
+    <div class="home__header">
+        <div class="home__heading--container">
+            <p class="home__heading--1">Don't miss out!</p>
+            <p class="home__heading--1">
+                Explore the <span>vibrant events</span> happening locally and globally.
+            </p>
+        </div>
+        <div class="home__input--container">
+            <i class="bi bi-search" (click)="navigateToEvents('search', {location, search})"></i>
+            <input 
+                class="home__input"
+                type="text"
+                placeholder="Search Events, Categories, Location,..."
+                #search
+            >
+            <i class="bi bi-geo-alt"></i>
+            <select 
+                class="form__input"
+                id="location" 
+                #location
+            >
+                <option *ngFor="let location of eventLocations" [value]="location.value">{{location.label}}</option>
+            </select>
+        </div>
+    </div>
+    
+    
+    <div class="home__padding">
+        <div *ngIf="isLoading" class="home__loading">
+            <app-spinner></app-spinner>
+        </div>
+        <div *ngIf="!isLoading && events.length > 0">
+            <p class="home__heading--2">Explore Categories</p>
+            <div class="home__categories">
+                <div class="home__cat" *ngFor="let cat of eventCategories" (click)="navigateToEvents('category', cat.value)">
+                    <img class="home__cat--icon" [src]="cat.icon" >
+                    <p class="home__heading--3">{{cat.label}}</p>
+                </div>
+            </div>
+    
+            <p class="home__heading--2">Discover Best of Online Events</p>
+            <div class="home__event--container" *ngIf="events.length > 0">
+                <div 
+                    class="home__event--box" 
+                    *ngFor="let event of events" 
+                    (click)="navigateToSummary(event)"
+                >
+                    <div class="home__event--logo-container">
+                        <img class="home__event--image" [src]="event.imageFile" alt="event">
+                        <p class="home__event--cat">{{getCategory(event.category)}}</p>
+                        <i class="bi bi-star home__event--icon"></i>
+                        <i class="bi bi-star-fill home__event--icon"></i>
+                    </div>
+                    <div class="home__event--details">
+                        <div>
+                            <p class="home__event--month">{{getMonth(event.startDate)}}</p>
+                            <p>{{getDay(event.startDate)}}</p>
+                        </div>
+                        <div>
+                            <p class="home__heading--3">{{event.title}}</p>
+                            <p class="home__event--online">online</p>
+                            <p class="home__event--time">{{getTime(event.startTime)}} - {{getTime(event.endTime)}}</p>
+                            <div class="home__event--ticket">
+                                <i class="bi bi-ticket" style="margin-right: 4px;"></i>
+                                <p style="margin-right: 4px;">
+                                    {{event.type === "Ticketed Event" ? getTicketPrice(event.tickets) + '$' : 'Free'}}
+                                </p>
+                                <i class="bi bi-star-fill" style="margin-left: 4px; margin-right: 4px;"></i> 
+                                <p>37 interested</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="home__see--more" (click)="navigateToEvents('all', 'all')">See More</button>
+            </div>
+        </div>
+    </div>
+    <div class="no-events" *ngIf="!isLoading && events.length === 0">
+        <h2>No events available</h2>
+        <p 
+            *ngIf="currentUser.isAdmin" 
+            (click)="navigateToEvents('new', '')"
+        >
+            Please add some events to get started.
+        </p>
+    </div>
+
+    <div class="home__create" *ngIf="currentUser.isAdmin">
+        <img class="home__create--image" src="assets/events/building.png">
+        <div>
+            <p class="home__create--header">Create an event with Eventify</p>
+            <p class="home__create--header-2">Got a show, event, activity or a great experience? Partner with us & get listed on Eventify</p>
+        </div>
+        <button class="home__create--button" (click)="navigateToEvents('new', '')">
+            <h5>
+                <i class="bi bi-calendar2-plus"></i>
+                Create Event
+            </h5>
+        </button>
+    </div>
+
+    <div class="home__subs">
+        <div>
+            <div class="home__subs--header">Subscribe to our Newsletter</div>
+            <div class="home__subs--header-2">Receive our weekly newsletter & updates with new events from your favourite organizers & venues.</div>
+        </div>
+        <div class="home__subs--button">
+            <input type="text" placeholder="Enter your e-mail address">
+            <button>Subscribe</button>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

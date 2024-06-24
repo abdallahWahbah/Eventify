@@ -1,0 +1,138 @@
+<!-- css file: comp/form, layouts/stepper, the component.scss -->
+
+<div 
+    style="display: flex; flex-direction: column; justify-content: space-between; min-height: 100vh;"
+    *ngIf="(allowEdit && editableEvent) || (!allowEdit)"
+>
+
+
+<app-header></app-header>
+
+<div class="stepper" style="min-height: 10rem; margin-bottom: auto;">    
+<mat-horizontal-stepper labelPosition="bottom" linear>
+
+    <mat-step [stepControl]="detailsForm">
+        <ng-template matStepLabel><h4>Edit</h4></ng-template>
+        <app-edit 
+            (formInitialized)="onEditFormInitialized($event)" 
+            [detailsForm]="detailsForm"
+            [editableEvent]="editableEvent"
+        >
+        </app-edit>
+
+        <div class="buttons__container">
+            <button     
+                class="button__next"
+                mat-button 
+                matStepperNext 
+                (click)="markAsTouch(detailsForm)"
+            >
+                Save & Continue
+            </button>
+            
+        </div>
+    </mat-step>
+    
+
+    <mat-step [stepControl]="imageForm">
+        <ng-template matStepLabel><h4>Banner</h4></ng-template>
+        <app-banner 
+            (formInitialized)="onImageFormInitialized($event)" 
+            [imageForm]="imageForm"
+            (fileUrl)="changeImageUrl($event)"
+            [editableEvent]="editableEvent" 
+        >
+        </app-banner>
+        
+        <div class="buttons__container">
+            <button 
+                class="button__mat button__prev"
+                mat-button
+                matStepperPrevious
+            >
+                Go back to Edit Events
+            </button>
+            <button     
+                class="button__mat button__next"
+                mat-button 
+                matStepperNext 
+                (click)="markAsTouch(imageForm)"
+            >
+                Save & Continue
+            </button>
+            
+        </div>
+    </mat-step>
+
+
+    <mat-step [stepControl]="ticketingForm">
+        <ng-template matStepLabel><h4>Ticketing</h4></ng-template>
+        <app-ticketing 
+            (formInitialized)="onTicketingFormInitialized($event)" 
+            [ticketingForm]="ticketingForm" 
+            [editableEvent]="editableEvent" 
+        >
+        </app-ticketing>
+
+        <div class="buttons__container">
+            <button 
+                class="button__mat button__prev"
+                mat-button
+                matStepperPrevious
+            >
+                Go back to Edit Events
+            </button>
+            <button     
+                class="button__mat button__next"
+                mat-button 
+                matStepperNext 
+                (click)="markAsTouch(ticketingForm)"
+            >
+                Save & Continue
+            </button>
+            
+        </div>
+    </mat-step>
+
+
+    <mat-step>
+        <ng-template matStepLabel><h4>Review</h4></ng-template>
+        <app-spinner 
+            *ngIf="isLoading"
+        >
+        </app-spinner>
+        <app-summary 
+            [summary]="summary"
+            *ngIf="!isLoading"
+            [allowEdit]="allowEdit"
+        >
+        </app-summary>
+
+        <div class="buttons__container" *ngIf="!isLoading">
+            <button 
+                class="button__mat button__prev"
+                mat-button
+                matStepperPrevious
+            >
+                Go back to Edit Events
+            </button>
+            <button     
+                class="button__mat button__next"
+                mat-button 
+                matStepperNext 
+                (click)="onSubmit()"
+            >
+                {{allowEdit ? 'Edit' : 'Publish'}} Event
+            </button>
+            
+        </div>
+    </mat-step>
+
+</mat-horizontal-stepper>
+</div>
+
+
+<app-footer></app-footer>
+
+
+</div>

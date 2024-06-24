@@ -1,0 +1,75 @@
+<!-- css file: pages/events -->
+
+<app-header></app-header>
+
+<div class="events">
+    <div class="events__header">
+        <p class="events__heading">Explore a world of events. Find what excites you!</p>
+        <div class="home__input--container">
+            <i class="bi bi-search"></i>
+            <input 
+                class="home__input"
+                type="text"
+                placeholder="Delhi"
+            >
+            <i class="bi bi-x"></i>
+        </div>
+    </div>
+
+    <div class="events__padding">
+        <div *ngIf="isLoading" class="home__loading">
+            <app-spinner></app-spinner>
+        </div>
+        <div *ngIf="!isLoading && events.length > 0">
+            <div class="sort">
+                <span style="margin-right: 6px;">Sort by: </span>
+                <select 
+                    id="location" 
+                    (change)="sortEvents(sorting)"
+                    #sorting
+                >
+                    <option value="asc">Asc</option>
+                    <option value="desc">Desc</option>
+                </select>
+            </div>
+            <div class="events__container">
+                <div class="events__box" *ngFor="let event of events" (click)="navigateToSummary(event)">
+                    <div class="events__logo--container">
+                        <img class="events__image" [src]="event.imageFile" alt="event">
+                        <p class="events__cat">{{getCategory(event)}}</p>
+                        <i class="bi bi-star events__icon"></i>
+                    </div>
+                    <div class="home__event--details">
+                        <div style="text-align: left;">
+                            <p class="home__heading--3">{{event.title}}</p>
+                            <p class="home__event--online">online</p>
+                            <p class="home__event--date-location">
+                                {{getMonth(event.startDate)}} - {{getDay(event.startDate)}} | {{getLocation(event.location)}}
+                            </p>
+                            <p class="home__event--time">{{getTime(event.startTime)}} - {{getTime(event.endTime)}}</p>
+                            <div class="home__event--ticket">
+                                <i class="bi bi-ticket" style="margin-right: 4px;"></i>
+                                <p style="margin-right: 4px;">
+                                    {{event.type === "Ticketed Event" ? getTicketPrice(event.tickets) + '$' : 'Free'}}
+                                </p>
+                                <i class="bi bi-star-fill" style="margin-left: 4px; margin-right: 4px;"></i> 
+                                <p>37 interested</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="no-events" *ngIf="!isLoading && events.length === 0">
+        <h2>No events available</h2>
+        <p 
+            *ngIf="currentUser.isAdmin" 
+            (click)="navigateToEvents('/', '')"
+        >
+            Please add some events to get started.
+        </p>
+    </div>
+</div>
+
+<app-footer></app-footer>

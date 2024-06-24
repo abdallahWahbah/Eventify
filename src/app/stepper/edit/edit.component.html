@@ -1,0 +1,123 @@
+<form [formGroup]="detailsForm">
+    <div formGroupName="details">
+        <p class="form__group--label">Event Details</p>
+
+        <div class="form__group form__group--horizontal">
+            <label for="title" class="form__label form__label--bold">Event Title</label>
+            <div class="form__group--input--container">
+                <input 
+                    class="form__input"
+                    id="title" 
+                    type="text"
+                    placeholder="Enter the name of your event"
+                    formControlName="title"
+                >
+                <p 
+                    class='error__message' 
+                    *ngIf="!detailsForm.get('details.title').valid && detailsForm.get('details.title').touched"
+                >
+                    Please, wtire the event name.
+                </p>
+            </div>
+        </div>
+
+        <div class="form__group form__group--horizontal">
+            <label for="category" class="form__label form__label--bold">Event Category</label>
+            <div class="form__group--input--container">
+                <select 
+                    class="form__input"
+                    id="category" 
+                    formControlName="category"
+                >
+                    <option *ngFor="let cat of eventCategories" [value]="cat.value">{{cat.label}}</option>
+                </select>
+                <p 
+                    class='error__message' 
+                    *ngIf="!detailsForm.get('details.category').valid && detailsForm.get('details.category').touched"
+                >
+                    <span *ngIf="detailsForm.get('details.category').errors?.['forbiddenValue']">Please, select the proper category.</span>
+                </p>
+            </div>
+        </div>
+        
+        <div class="form__group form__group--horizontal">
+            <label for="location" class="form__label form__label--bold">Event Location</label>
+            <div class="form__group--input--container">
+                <select 
+                    class="form__input"
+                    id="location" 
+                    formControlName="location"
+                >
+                    <option *ngFor="let location of eventLocations" [value]="location.value">{{location.label}}</option>
+                </select>
+                <p 
+                    class='error__message' 
+                    *ngIf="!detailsForm.get('details.location').valid && detailsForm.get('details.location').touched"
+                >
+                    <span *ngIf="detailsForm.get('details.location').errors?.['forbiddenValue']">Please, select the proper location.</span>
+                </p>    
+            </div>
+        </div>
+    </div>
+
+
+
+    <div formGroupName="date">
+        <p class="form__group--label">Date & Time</p>
+        <div class="form__date">
+            <div class="form__group">
+                <label for="start_date" class="form__label">Start Date</label>
+                <input 
+                    type="date" 
+                    id="start_date" 
+                    class="form__input"
+                    formControlName="startDate"
+                >
+            </div>
+            <div class="form__group">
+                <label for="startTime" class="form__label">Start Time</label>
+                <input 
+                    type="time" 
+                    id="startTime" 
+                    class="form__input"
+                    formControlName="startTime"
+                >
+                
+            </div>
+
+            <div class="form__group">
+                <label for="endTime" class="form__label">End Time</label>
+                <input 
+                    type="time" 
+                    id="endTime" 
+                    class="form__input"
+                    formControlName="endTime"
+                >
+            </div>
+        </div>
+    </div>
+
+
+    <div>
+        <p class="form__group--label">Additional Information</p>
+
+        <div class="form__group form__group--horizontal textarea">
+            <label for="description" class="form__label form__label--bold">Event Description</label>
+            <div class="form__group--input--container">
+                <textarea 
+                    class="form__input"
+                    id="description" 
+                    formControlName="description"
+                    placeholder="Describe what special about your event & other information"
+                    rows="8"
+                ></textarea>
+                <p 
+                    class='error__message' 
+                    *ngIf="!detailsForm.get('description').valid && detailsForm.get('description').touched"
+                >
+                    Describe what special about your event & other information
+                </p>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,298 @@
+.stepper
+{
+    position: relative;
+    .lds-roller
+    {
+    transform: translate(-50%, -50%) scale(1) !important;
+    position: absolute !important;
+    }
+    padding: 0 3rem;
+
+    form{
+
+        width: 80% !important;
+        margin: 0 auto;
+        min-height: 50vh;
+    }
+    .form
+    {
+        &__group
+        {
+            &--horizontal
+            {
+                flex-direction: row; 
+                align-items: baseline;
+                margin-bottom: 1rem;
+            }
+            &--label
+            {
+                font-size: 1.4rem;
+                font-weight: 400;
+                margin: 2rem 0 1rem 0;
+            }
+
+            &--input--container
+            {
+                flex-basis: 85%;
+
+                .error__message
+                {
+                    margin: 0;
+                }
+            }
+        }
+        &__label--bold
+        {
+            font-size: .8rem;
+            font-weight: 500;
+            color: $color-dark-1;
+            flex-basis: 15%;
+        }
+        &__input
+        {
+            margin: 0;
+            flex-basis: 85%;
+            padding: .4rem;
+            width: 100%;
+
+            
+        }
+
+        
+        &__date
+        {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+
+            & > * {flex: 1;}
+        }
+    }
+    .textarea
+    {
+        display: flex;
+        align-items: start;
+    }
+
+    .buttons__container
+    {
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: flex-end;
+
+        .button
+        {
+            &__mat
+            {
+                padding: 0 1.7rem;
+
+            }
+            &__next
+            {
+                background-color: $color-dark-1;
+                border-radius: 5px;
+                color: $color-white;
+                font-size: .7rem;
+                letter-spacing: .8px;
+            }
+            &__prev
+            {
+                color: $color-dark-1;
+                margin-right: 1rem;
+            }
+        }
+    }
+
+    
+    input[type=file]
+    {
+        color: $color-gray-1;
+
+    }
+    .file
+    {
+        width: 50%;
+        border: 1px solid $color-gray-1;
+        padding: .3rem 1rem;
+    }
+    .valid__format
+    {
+        font-size: .7rem;
+        margin-top: 1rem;
+        color: $color-gray-2;
+    }
+    .event__type
+    {
+        &--label-container
+        {
+            display: flex;
+            width: 40rem;
+            width: 60%;
+        }
+        &--container
+        {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;            
+            padding: 1rem 0;
+            z-index: 1;
+            &:not(:last-of-type){margin-right: 1rem;}
+        }
+        &--icon
+        {
+            transform: scale(1.5);
+            margin-bottom: .7rem;
+        }
+        &--name
+        {
+            font-size: .8rem;
+            font-weight: 500;
+        }
+        &--desc
+        {
+            font-size: .7rem;
+        }
+        &--input
+        {
+            opacity: 1;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            appearance: none;
+            border: 2px solid $color-gray-1;
+            border-radius: .5rem;
+
+
+            &:checked
+            {
+                border: 2px solid $color-gray-2;
+                background-color: $color-selected;
+                z-index: -1;
+            }
+        }
+    }
+    .add__ticket--button
+    {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 2px solid $color-dark-1;
+        background-color: white;
+        color: $color-dark-1;
+        font-size: 24px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+}
+.summary
+{
+    width: 80%;
+    margin: 0 auto;
+    padding: 1rem;
+    min-height: 50vh;
+    border: 2px solid $color-dark-1;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+
+    &__photo
+    {
+        width: 100%;
+        height: 20rem;
+        margin-bottom: 1rem;
+    }
+    &__header
+    {
+        letter-spacing: 1px;
+        margin-bottom: 2rem;
+    }
+    &__wide--container
+    {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+    }
+    &__label
+    {
+        font-weight: 600;
+    }
+    &__icon--container
+    {
+        display: flex;
+        align-items: center;
+    }
+    &__icon
+    {
+        font-size: 1rem;
+        margin-top: .5rem;
+    }
+    &__icon--value
+    {
+        font-size: .7rem;
+        font-weight: 500;
+    }
+    .add__to--calendar
+    {
+        font-size: 1rem;
+        color: $color-blue;
+        font-size: .7rem;
+        font-weight: 500;
+        margin-bottom: 2rem;
+        display: block;
+    }
+    &__label--value
+    {
+        font-size: .75rem;
+        display: block;
+        font-weight: 500;
+    }
+    &__hoisting
+    {
+        margin: 2rem 0;
+
+        img
+        {
+            height: 60px;
+            width: 60px;
+            border-radius: 10px;
+            margin-right: 1rem;
+        }
+    }
+    &__desc
+    {
+        color: $color-gray-2;
+        font-size: .8rem;
+    }
+    &__buy--button
+    {
+        background-color: $color-yellow;
+        padding: .6rem 1.6rem;
+        border-radius: 4px;
+        border: none;
+        margin-bottom: 1rem;
+        display: block;
+        cursor: pointer;
+        font-size: .8rem;
+        font-weight: 600;
+
+        display: flex;
+        align-items: center;
+
+        &:focus{outline: none;}
+
+        i
+        {
+            margin-right: .4rem;
+            transform: rotate(-45deg);
+        }
+    }
+}

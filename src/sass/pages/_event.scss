@@ -1,0 +1,108 @@
+.events
+{
+    min-height: 30vh;
+    &__header
+    {
+        padding: 2rem 0;
+        background-color: $color-dark-2;
+        i
+        {
+            margin-right: 1rem;
+        }
+    }
+    &__heading
+    {
+        font-size: 2rem;
+        font-weight: 600;
+        color: white;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+    .bi-x
+    {
+        cursor: pointer;
+    }
+    .home__input--container
+    {
+        margin: 0 auto;
+        width: 30%;
+        padding: .5rem .7rem;
+    }
+    &__padding
+    {
+        margin: 3rem;
+        min-height: 40vh;
+        background-color: white;
+    }
+    .sort
+    {
+        font-size: .8rem;
+        color: $color-gray-2;   
+        text-align: right;
+        select
+        {
+            border: 1px solid $color-gray-2;
+            padding: .2rem 0;
+            padding-right: 5rem;
+            border-radius: 3px;
+            font-weight: 600;
+
+            &:focus{outline: none;}
+        }
+    }
+    &__container
+    {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 14%;
+        margin: 3rem 5rem;
+    }
+    &__box
+    {
+        height: 152px;
+        flex-basis: 43%;
+        cursor: pointer;
+        padding: .5rem;
+        box-shadow: 0rem 0rem .5rem rgba($color-dark-1, 1);
+        margin-bottom: 2rem;
+        border-radius: 5px;
+        display: flex;
+    }
+    &__logo--container
+    {
+        position: relative;
+        height: 136px;
+    }
+    &__image
+    {
+        width: 12rem;
+        height: 100%;
+        border-radius: 10px;
+    }
+    &__cat
+    {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background-color: $color-yellow;
+        font-size: .6rem;
+        font-weight: 700;
+        padding: .2rem .5rem;
+        border-top-right-radius: 6px;
+        border-bottom-left-radius: 6px;
+    }
+    &__icon
+    {
+        position: absolute;
+        top: .6rem;
+        right: .6rem;
+        background-color: $color-white;
+        border-radius: 50%;
+        height: 1.5rem;
+        width: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

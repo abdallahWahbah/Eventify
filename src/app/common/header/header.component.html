@@ -1,0 +1,48 @@
+<!-- css file: comp/header -->
+
+<div class="header">
+    <app-logo></app-logo>
+
+    <ul class="nav nav__middle">
+        <div style="display: flex;">
+            <li routerLinkActive="active">
+                <a [routerLink]="['/home']" appHover [defaultColor]="'white'" hoverColor="#cbcbcb">Home</a>
+            </li>
+            <li routerLinkActive="active">
+                <a [routerLink]="['/events', 'all']" appHover [defaultColor]="'white'" hoverColor="#cbcbcb">Events</a>
+            </li>
+            <li routerLinkActive="active">
+                <a [routerLink]="['/about']" appHover [defaultColor]="'white'" hoverColor="#cbcbcb">about</a>
+            </li>
+            <li routerLinkActive="active">
+                <a [routerLink]="['/contact']" appHover [defaultColor]="'white'" hoverColor="#cbcbcb">contact</a>
+            </li>
+        </div>
+    </ul>
+
+    <ul class="nav nav__left">
+        <li routerLinkActive="active" *ngIf="currentUser?.isAdmin">
+            <a [routerLink]="['/events', 'new']">Create Event</a>
+        </li>
+
+        <div class="no__user" *ngIf="!currentUser">
+            <a [routerLink]="['/auth']" class="no__user--login">Login</a>
+            <a [routerLink]="['/auth']" class="no__user--signup">Signup</a>
+        </div>
+
+        <div class="user__exists" *ngIf="currentUser">
+            <div class="icon__container">
+                <mat-icon class="user__icon">confirmation_number</mat-icon>
+                <p class="user__text">Tickets</p>
+            </div>
+            <div class="icon__container">
+                <mat-icon class="user__icon">star</mat-icon>
+                <p class="user__text">Interested</p>
+            </div>
+            <div class="icon__container">
+                <mat-icon class="user__icon material-symbols-outlined">account_circle</mat-icon>
+                <p class="user__text">Profile</p>
+            </div>
+        </div>
+    </ul>
+</div>

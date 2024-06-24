@@ -1,0 +1,50 @@
+<form [formGroup]="ticketingForm">
+    <p class="form__group--label">What type of event are you running?</p>
+    <div class="event__type--label-container">
+        <label *ngFor="let eventType of eventTypes" class="event__type--container">
+                <mat-icon class="event__type--icon">{{eventType.iconName}}</mat-icon>
+                <span class="event__type--name">{{eventType.type}}</span>
+                <span class="event__type--desc">{{eventType.desc}}</span>
+                <input 
+                    class="event__type--input"
+                    type="radio"
+                    formControlName="type"
+                    [value]="eventType.type"
+                >
+        </label>
+    </div>
+    <div *ngIf="!ticketingForm.controls['type'].valid && ticketingForm.controls['type'].touched">
+        <small class="error__message" *ngIf="ticketingForm.controls['type'].errors?.required">Type is required.</small>
+    </div>
+
+    <div *ngIf="ticketingForm.get('type')?.value === 'Ticketed Event'" formArrayName="tickets">
+        <p class="form__group--label">What tickets are you selling?</p>
+        <div
+            style="display: flex; align-items: center;"
+            *ngFor="let ticket of ticketsControls; let i = index"
+            [formGroupName]="i"
+        >
+            <div class="form__group" style="margin-right: .5rem;">
+                <label for="name" class="form__label--bold" style="font-size: .7rem;">Ticket Name</label>
+                <input 
+                    type="text" 
+                    id="name" 
+                    class="form__input"
+                    formControlName="name"
+                    placeholder="Ticket Name e.g. General Admission"
+                >
+            </div>
+            <div class="form__group" style="margin-right: .5rem;">
+                <label for="price" class="form__label--bold" style="font-size: .7rem;">Ticket Price</label>
+                <input 
+                    type="number" 
+                    id="price" 
+                    class="form__input"
+                    formControlName="price"
+                    placeholder="0.00"
+                >
+            </div>
+            <span class="add__ticket--button" (click)="addTicket()">+</span>
+        </div>
+    </div>
+</form>

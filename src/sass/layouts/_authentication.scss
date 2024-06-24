@@ -1,0 +1,170 @@
+.logo
+{
+    &__container
+    {
+        display: flex;
+        align-items: center;
+    }
+    &__text
+    {
+        font-family: "Lalezar", system-ui;
+        color: $color-yellow;
+        font-size: 1.5625; // 25px
+        margin-top: 0.3125rem;
+    }
+}
+
+.auth
+{
+    min-height: 100vh;
+    background-color: $color-dark-1;
+    display: flex;
+
+    &__left
+    {
+        color: $color-white;
+        flex-basis: 40%;
+        padding-top: 1rem;
+        padding-left: 1rem;
+
+        @include respond(tab-port) 
+        {
+            display: none;
+        }
+    }
+    &__right
+    {
+        color: $color-white;
+        background-color: $color-white;
+        flex-basis: 60%;
+        border-top-left-radius: 3.75rem;
+        border-bottom-left-radius: 3.75rem;
+        position: relative;
+        color: $color-dark-1;
+        padding: 4rem 5rem;
+
+        display: flex;
+        justify-content: center;
+
+        &--container
+        {
+            width: 70%;
+        }
+    }
+    &__paragraph
+    {
+        font-size: 2.625rem;
+        font-weight: 600;
+        line-height: 3.75rem;
+        margin: 0 2rem;
+        
+        &--container
+        {
+            margin-top: 4rem;
+        }
+    }
+    &__close
+    {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        text-decoration: none;
+    }
+    &__header
+    {
+        font-size: 2.25rem;
+    }
+}
+
+// social media icons
+.social__media--icons
+{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.25rem;
+}
+.social__media--icon-container
+{
+    border: 1px solid $color-gray-1;
+    padding: .6rem 1.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    flex-basis: 45%;
+    cursor: pointer;
+}
+.social__media--icon
+{
+    width: 1.5625; 
+    height: 1.25rem; 
+    margin-right: 0.4375rem;
+}
+.social__media--text
+{
+    color: $color-dark-1;
+    font-size: .75rem;
+    font-weight: 500;
+}
+
+// or line
+.line__or
+{
+    margin: 0.625rem auto;
+    width: 100%;
+    margin-top: 1.25rem;
+}
+.or 
+{
+    position: relative;
+    text-align: center;
+    font-size: 0.8125rem;
+}
+  
+.or:before,
+.or:after 
+{
+    position: absolute;
+    content: " ";
+    bottom: 0.625rem;
+    width: 45%;
+    height: 1px;
+    background: $color-gray-1;
+}
+.or:after 
+{
+    right: 0;
+}
+.or:before 
+{
+    left: 0;
+}
+
+// change isLoggedIn text
+.change__status
+{
+    margin-top: 0.625rem;
+    color: $color-gray-2;
+    font-size: .75rem;
+
+    span
+    {
+        color: $color-dark-1;
+        cursor: pointer;
+    }
+}
+
+
+.response__error--message
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: rgb(172, 5, 5);
+    border-radius: 10px;
+    padding: .8rem 1rem;
+    color: $color-white;
+    display: flex;
+    justify-content: space-between;
+
+    span{cursor: pointer;}
+}

@@ -1,0 +1,39 @@
+.form
+{
+    &__group
+    {
+        display: flex;
+        flex-direction: column;
+    }
+    &__label
+    {
+        color: $color-gray-2;
+        font-size: .75rem;
+    }   
+    &__input
+    {
+        color: inherit;
+        padding: .7rem;
+        border-radius: 5px;
+        border: 1px solid $color-gray-1;
+        margin-bottom: .8rem;
+
+        &:focus
+        {
+            outline: none;
+        }
+    }
+    &__group--label
+    {
+        display: flex;
+        align-items: center;
+        &:not(:last-child){margin-right: 1rem;}
+    }
+}
+.error__message
+{
+    color: rgb(200, 0, 0);
+    margin-top: -0.625rem;
+    margin-bottom: 0.625rem;
+}
+

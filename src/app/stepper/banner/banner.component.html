@@ -1,0 +1,16 @@
+<form [formGroup]="imageForm">
+    <p class="form__group--label">Upload Image</p>
+    <div class="file">
+        <input 
+            type="file"  
+            (change)="onFileChange($event)"
+            accept=".jpg, .png, .gif"
+            fileControlName="file"
+        > 
+        <div *ngIf="!imageForm.controls['file'].valid && imageForm.controls['file'].touched">
+            <small class="error__message" *ngIf="imageForm.controls['file'].errors?.required">File is required.</small>
+            <small class="error__message" *ngIf="imageForm.controls['file'].errors?.invalidFileType">Invalid file type. Only JPG, PNG, GIF allowed.</small>
+        </div>
+    </div>
+    <p class="valid__format">Valid file formats: JPG, GIF, PNG.</p>
+</form>

@@ -1,0 +1,282 @@
+.dialog
+{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    backdrop-filter: blur(10px);
+
+    &__center
+    {
+        width: 40%;
+        min-height: 50%;
+        box-shadow: 0 0 .5rem rgba($color-dark-1, .7);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    &__header
+    {
+        background-color: $color-white;
+        padding: 0 1rem;
+        border-bottom: 1px solid $color-gray-1;
+        display: flex;
+        align-items: center;
+
+        .bi-arrow-left-short
+        {
+            margin-right: 1rem;
+        }
+    }
+    &__heading
+    {
+        margin-right: auto;
+        font-weight: 600;
+    }
+    i
+    {
+        font-size: 2rem;
+        cursor: pointer;
+    }
+    &__tickets
+    {
+        background-color: $color-gray-4;
+        margin-bottom: auto;
+        flex: 1;
+    }
+    &__tickets--heading
+    {
+        font-size: .7rem;
+        font-weight: 600;
+        padding-left: 1rem;
+    }
+    &__ticket
+    {
+        border-left: 10px solid $color-green;
+        padding: .5rem 1rem;
+        margin-bottom: 1rem;
+        background-color: $color-white;
+        display: flex;
+        
+        &--details
+        {
+            margin-right: auto;
+        }
+        &--name
+        {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        &--price
+        {
+            font-size: .7rem;
+            font-weight: 500;
+        }
+        &--quantity
+        {
+            display: flex;
+            align-items: center;
+            i
+            {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                border: 1px solid $color-dark-1;
+                font-size: 1rem;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            input
+            {
+                width: 2rem !important;
+                text-align: center;
+                border: none;
+                font-size: 1.1rem;
+                font-weight: 700;
+                &:focus{outline: none;}
+            }
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button 
+            {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+        }
+    }
+    &__buton--container
+    {
+        border-top: 1px solid $color-gray-1;
+        padding: 0 1rem;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+    }
+    &__quantity--total
+    {
+        margin-bottom: .5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &-key
+        {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        &-value
+        {
+            color: $color-green;
+            font-weight: 500;
+            margin-left: .3rem;
+            &:not(:last-child){margin-right: 1.5rem;}
+        }
+    }
+    &__button
+    {
+        margin-bottom: .5rem;
+        background-color: $color-dark-1;
+        color: white;
+        font-size: 1rem;
+        letter-spacing: .8px;
+        cursor: pointer;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:focus{outline: none;}
+    }
+    &__summary--ticket-container
+    {
+        background-color: $color-gray-4;
+        margin-bottom: auto;
+        flex: 1;
+        padding-top: 2rem;
+    }
+    &__summary--ticket
+    {
+        background-color: $color-white;
+        width: 50%;
+        border-top: 2px solid $color-blue-light;
+        margin: 0 auto;
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+        position: relative;
+        box-shadow: 0 0 .2rem rgba($color-dark-1, .7);
+
+        &::before,
+        &::after
+        {
+            content: "";
+            background-color: $color-gray-4;;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+        }
+        &::before
+        {
+            border-right: 1px solid rgba($color-dark-1, .7);
+            left: 0%;
+            transform: translate(-50%, -50%);
+        }
+        &::after
+        {
+            border-left: 1px solid rgba($color-dark-1, .7);
+            right: 0%;
+            transform: translate(50%, -50%);
+        }
+    }
+    &__summary--heading
+    {
+        margin: .5rem 0;
+        display: block;
+        text-align: center;
+        color: $color-blue-light;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+    &__summary--name
+    {
+        margin-left: 2rem;
+        font-size: .7rem;
+        font-weight: 600;
+        display: block;
+    }
+    &__summary--ticket-price
+    {
+        position: absolute;
+        bottom: 7px;
+        right: 0;
+        background-color: $color-blue-light;
+        font-size: .6rem;
+        color: white;
+        padding: 0 1rem;
+    }
+
+    &__summary--button-container
+    {
+        background-color: white;
+        padding: 1rem 0;
+    }
+    &__summary--key-value
+    {
+        width: 50%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: .3rem;
+    }
+    &__summary--key
+    {
+        font-size: .7rem;
+        font-weight: 600;
+        color: $color-dark-1;
+    }
+    &__summary--value
+    {
+        font-size: .7rem;
+        font-weight: 700;
+    }
+    hr
+    {
+        width: 50%;
+        margin: 0 auto;
+    }
+    &__summary--total-key
+    {
+        color: black;
+        font-size: .9rem;
+        font-weight: 700;
+    }
+    &__summary--total-value
+    {
+        color: $color-green;
+        font-weight: 700;
+    }
+    &__button--summary
+    {
+        width: 90%;
+        margin: 0 auto;
+        background-color: $color-green;
+        font-size: .8rem;
+        padding: .7rem 0;
+        border-radius: 5px;
+        border: none;
+        i
+        {
+            font-size: .8rem;
+            margin-right: .5rem;
+        }
+    }
+}

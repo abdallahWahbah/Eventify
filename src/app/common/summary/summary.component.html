@@ -1,0 +1,81 @@
+<!-- css file: layouts/stepper -->
+<app-header *ngIf="idParam && !allowEdit"></app-header>
+
+<div 
+    class="summary" 
+    *ngIf="summary?.type === 'Free Event' || summary?.type === 'Ticketed Event'"
+    [ngStyle]="{'margin-top': idParam && '2rem', 'width': idParam && '50%'}"
+>
+    <img class="summary__photo" [src]="summary.imageFile" alt="Summry__photo">
+    <h2 class="summary__header">
+        {{summary.title}}
+    </h2>
+    <div class="summary__wide--container">
+        <div class="summary__small--container">
+            <span class="summary__label">Date and Time</span>
+            <div class="summary__icon--container">
+                <mat-icon class="summary__icon">calendar_month</mat-icon> 
+                <span class="summary__icon--value">
+                    <!-- {{summary.startDate | date: "EEEE, d MMMM y"}} -->
+                     {{summary.startDate | customDate: 'short'}}
+                </span>
+            </div>
+            <div class="summary__icon--container">
+                <mat-icon class="summary__icon">schedule</mat-icon> 
+                <span class="summary__icon--value">
+                    {{getTime(summary.startTime)}} - {{getTime(summary.endTime)}}
+                </span>
+            </div>
+            <span class="add__to--calendar">+ Add to Calendar</span>
+        </div>
+        <div class="summary__small--container">
+            <app-dialog 
+                *ngIf="showDialog"
+                [tickets]="summary.tickets"
+                (showDialoghandle)="handleShowDialog($event)"
+                
+            ></app-dialog>
+            <button class="summary__buy--button" *ngIf="idParam && !currentUser.isAdmin && !allowEdit" (click)="showDialog = true">
+                <i class="bi bi-ticket-fill" [ngStyle]="{'z-index': showDialog ? -1 : 1}"></i>
+                Buy Ticket
+            </button>
+            <button class="summary__buy--button" *ngIf="idParam && currentUser.isAdmin && !allowEdit" (click)="navigateToEdit(summary._id)">
+                <i class="bi bi-ticket-fill"></i>
+                Edit Event
+            </button>
+            <span class="summary__label">Tiket Information</span>
+            <div class="summary__icon--container">
+                <mat-icon class="summary__icon">confirmation_number</mat-icon> 
+                <span class="summary__icon--value">
+                    {{summary.type}} {{summary.type === 'Ticketed Event' ? (getTicketPrice(summary.tickets) + '$') : null}}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <span class="summary__label">Location</span>
+    <span class="summary__label--value">
+        {{getLocation(summary.location)}}
+    </span>
+
+    <div class="summary__hoisting">
+        <span class="summary__label">Hoisted by</span>
+        <div class="summary__icon--container">
+            <img src="assets/2.jpg" alt="Hoisting">
+            <div class="summary__hoisting--details">
+                <span class="summary__label--value">{{idParam ? summary.hoisting: currentUser.name}}</span>
+                <div class="summary__hoisting--buttons">
+                    <button class="btn btn__summary btn__transparent">Contact</button>
+                    <button class="btn btn__dark btn__summary">+ Follow</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <span class="summary__label">Event Description</span>
+    <p class="summary__desc">
+        {{summary.description}}
+    </p>
+</div>
+
+<app-footer *ngIf="idParam && !allowEdit"></app-footer>

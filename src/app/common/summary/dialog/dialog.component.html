@@ -1,0 +1,71 @@
+<!-- css file: layouts/dialog -->
+<div class="dialog">
+    <div class="dialog__center" *ngIf="!showOrderSummary">
+        <div class="dialog__header">
+            <h4 class="dialog__heading">Select Tickets</h4>
+            <i class="bi bi-x" (click)="showDialoghandle.emit(false)"></i>
+        </div>
+        <div class="dialog__tickets">
+            <span class="dialog__tickets--heading">Tickets Types</span>
+            <div class="dialog__ticket" *ngFor="let ticket of tickets">
+                <div class="dialog__ticket--details">
+                    <h3 class="dialog__ticket--name">{{ticket.name}}</h3>
+                    <p class="dialog__ticket--price">$ {{ticket.price.toFixed(2)}}</p>
+                </div>
+                <div class="dialog__ticket--quantity">
+                    <i class="bi bi-dash-lg" (click)="decrease(ticket, amount)"></i>
+                    <input type="number" value="1" min="0" #amount>
+                    <i class="bi bi-plus-lg" (click)="increase(ticket, amount)"></i>
+                </div>
+            </div>
+        </div>
+        <div class="dialog__buton--container">
+            <div class="dialog__quantity--total">
+                <h3 class="dialog__quantity--total-key">Qty: </h3>
+                <span class="dialog__quantity--total-value">{{getQuantity()}}</span>
+                <h3 class="dialog__quantity--total-key">Total: </h3>
+                <span class="dialog__quantity--total-value">$ {{getTotal()}}</span>
+            </div>
+            <button class="dialog__button" (click)="setShowOrderSummary(true)">
+                Proceed
+                <i class="bi bi-arrow-right-short"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="dialog__center" *ngIf="showOrderSummary">
+        <div class="dialog__header">
+            <i class="bi bi-arrow-left-short" (click)="setShowOrderSummary(false)"></i>
+            <h4 class="dialog__heading">OrderSummary</h4>
+            <i class="bi bi-x" (click)="showDialoghandle.emit(false)"></i>
+        </div>
+        <div class="dialog__summary--ticket-container">
+            <div class="dialog__summary--ticket" *ngFor="let ticket of tickets">
+                <span class="dialog__summary--heading">{{ticket.name}}</span>
+                <span class="dialog__summary--name">Andrea Gomez</span>
+                <span class="dialog__summary--name">{{email}}</span>
+                <span class="dialog__summary--ticket-price">{{ticket.price * ticket.amount}}</span>
+            </div>
+        </div>
+        <div class="dialog__summary--button-container">
+            <div class="dialog__summary--key-value">
+                <p class="dialog__summary--key">Sub Total: </p>
+                <p class="dialog__summary--value">$ {{getTotal().toFixed(2)}}</p>
+            </div>
+            <div class="dialog__summary--key-value">
+                <p class="dialog__summary--key">Tax: </p>
+                <p class="dialog__summary--value">$ {{(getTotal() * .1).toFixed(2)}}</p>
+            </div>
+            <hr>
+            <div class="dialog__summary--key-value">
+                <p class="dialog__summary--total-key">Order Total: </p>
+                <p class="dialog__summary--total-value">$ {{(getTotal() * 1.1).toFixed(2)}} </p>
+            </div>
+
+            <button class="dialog__button dialog__button--summary" (click)="setShowOrderSummary(true)">
+                <i class="bi bi-lock-fill"></i>
+                Pay Now
+            </button>
+        </div>
+    </div>
+</div>

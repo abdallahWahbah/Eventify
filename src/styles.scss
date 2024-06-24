@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+
+// @import "bootstrap/scss/bootstrap";
+@import "bootstrap-icons/font/bootstrap-icons";
+
+@import "./sass/abstracts/mixins";
+@import "./sass/abstracts/variables";
+
+@import "./sass/base/base";
+
+@import "./sass/components/button";
+@import "./sass/components/form";
+@import "./sass/components/header";
+
+@import "./sass/layouts/authentication";
+@import "./sass/layouts/dialog";
+@import "./sass/layouts/footer";
+@import "./sass/layouts/stepper";
+
+@import "./sass/pages/event";
+@import "./sass/pages/home";
+
+
+html, body 
+{
+    height: 100%;
+}
+body 
+{ 
+    margin: 0; 
+    font-family: "Montserrat", sans-serif;
+}
