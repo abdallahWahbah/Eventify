@@ -1,0 +1,59 @@
+<!-- css file: pages/add_cat -->
+<div class="cat">
+    <div class="cat__spinner" *ngIf="isLoading">
+        <app-spinner></app-spinner>
+    </div>
+    <form (ngSubmit)="onSubmit()" #form="ngForm" class="form"  *ngIf="!isLoading">
+        <div class="form__group">
+            <label for="catVal" class="form__label">Value</label>
+            <input 
+                type="text" 
+                id="catVal" 
+                class="form__input"
+                ngModel
+                name="catVal"
+                placeholder="Please, write the catVal of the category"
+                required
+                #catValRef="ngModel"
+            >
+            <span class='error__message' *ngIf="!catValRef.valid && catValRef.touched">Value for the category is required</span>
+        </div>
+        <div class="form__group">
+            <label for="label" class="form__label">label</label>
+            <input 
+                type="text" 
+                id="label" 
+                class="form__input"
+                ngModel
+                name="label"
+                placeholder="Please, write the label of the category"
+                required
+                #labelRef="ngModel"
+            >
+            <span class='error__message' *ngIf="!labelRef.valid && labelRef.touched">label is required</span>
+        </div>
+        <div class="form__group">
+            <label for="image" class="form__label">Image URL</label>
+            <input 
+                type="text" 
+                id="image" 
+                class="form__input"
+                ngModel
+                name="image"
+                placeholder="Please, write the image of the category"
+                required
+                #imageRef="ngModel"
+            >
+            <span class='error__message' *ngIf="!imageRef.valid && imageRef.touched">URL for the image is required</span>
+        </div>
+        
+        <button 
+            type="submit"
+            class="btn btn__wide btn__dark"
+            [ngStyle]="{'cursor': !form.valid ? 'not-allowed' : 'pointer'}"
+            [disabled]="!form.valid"
+        >
+            Create Category
+        </button>
+    </form>
+</div>

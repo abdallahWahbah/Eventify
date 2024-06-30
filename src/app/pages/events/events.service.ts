@@ -18,7 +18,8 @@ export interface Event
     tickets?: {name: string, price: number}[];
 }
 
-@Injectable({providedIn: "root"})
+// @Injectable({providedIn: "root"})
+@Injectable() // used in shared.module.ts which is imported in app.module.ts
 export class EventsService
 {
     constructor(private http: HttpClient,
@@ -28,6 +29,11 @@ export class EventsService
     getAllEvents()
     {
         return this.http.get("/api/events")
+    }
+
+    getAllCategories()
+    {
+        return this.http.get("/api/categories");
     }
 
     addEvent(event: Event)

@@ -1,22 +1,15 @@
 import { RouterModule, Routes } from "@angular/router";
 import { AuthComponent } from "./auth/auth.component";
 import { NgModule } from "@angular/core";
-import { HomeComponent } from "./pages/home/home.component";
-import { EventsComponent } from "./pages/events/events.component";
 import { AboutComponent } from "./pages/about/about.component";
 import { ContactComponent } from "./pages/contact/contact.component";
-import { AuthGuard } from "./auth/auth-guard.service";
-import { StepperComponent } from "./stepper/stepper.component";
-import { SummaryComponent } from "./common/summary/summary.component";
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: "auth", component: AuthComponent },
-    { path: "home", component: HomeComponent},
-    { path: "events/new", component: StepperComponent, canActivate: [AuthGuard]},
-    { path: "events/:modifier", component: EventsComponent},
-    { path: "events/details/:id", component: SummaryComponent},
-    { path: "events/edit/:id", component: StepperComponent, canActivate: [AuthGuard]},
+    { path: "auth", loadChildren: () => import('./auth/auth.module').then(x => x.AuthModule) },
+    { path: "home", loadChildren: () => import("./pages/home/home.module").then(x => x.HomeModule)},
+    { path: "events", loadChildren: () => import("./pages/events/events.module").then(x => x.EventsModule) },
+    { path: "add-cat", loadChildren: () => import('./pages/add-cat/add-cat.module').then(x => x.AddCatModule) },
     { path: "about", component: AboutComponent},
     { path: "contact", component: ContactComponent},
 ]

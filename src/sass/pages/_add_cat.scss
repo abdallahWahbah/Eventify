@@ -1,0 +1,13 @@
+.cat
+{
+    width: 50%;
+    margin: 2rem auto;
+    border: 2px solid $color-gray-3;
+    border-radius: 1rem;
+    padding: 2rem;
+
+    &__spinner
+    {
+        margin-top: 4rem;
+    }
+}

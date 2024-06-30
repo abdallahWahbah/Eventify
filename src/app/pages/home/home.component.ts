@@ -17,30 +17,36 @@ export class HomeComponent  implements OnInit{
   events: Event[] = [];
   isLoading = true;
   currentUser: User;
-  
+  numberOfClicks: number = 0;
 
   constructor(private eventsService: EventsService,
               private authService: AuthService,
               private router: Router,
               private utilService: UtilService
-  ){}
+  ){
 
-  ngOnInit()
-  {
+    this.eventsService.getAllCategories().subscribe((cats: {value: string, label: string, icon: string}[]) => {
+      this.eventCategories = cats.filter(cat => cat.value !== "default")
+    })
+  
     this.authService.currentUser.subscribe(user => {
       this.currentUser = user;
     })
-
+  
     this.eventsService.getAllEvents().subscribe((allEvents: Event[]) => {
-
+  
       this.isLoading = false;
       if(allEvents.length === 0) return;
-
+  
       this.events = allEvents.slice(0, 6);
       this.eventLocations = this.utilService.eventLocations.filter(location => location.value !== "default")
-      this.eventCategories = this.utilService.eventCategories.filter(cat => cat.value !== "default")
-
+      // this.eventCategories = this.utilService.eventCategories.filter(cat => cat.value !== "default")
+  
     })
+  }
+
+  ngOnInit()
+  {
   } 
 
   getCategory(value: string)

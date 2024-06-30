@@ -88,7 +88,7 @@
             Please add some events to get started.
         </p>
     </div>
-
+<h1>{{numberOfClicks}}</h1>
     <div class="home__create" *ngIf="currentUser.isAdmin">
         <img class="home__create--image" src="assets/events/building.png">
         <div>
@@ -114,5 +114,5 @@
         </div>
     </div>
 </div>
-
-<app-footer></app-footer>
+<!-- <app-footer [numberToIncrease]="numberOfClicks" (increaseNumber)="numberOfClicks=$event"></app-footer> -->
+<app-footer [(numberToIncrease)]="numberOfClicks"></app-footer>

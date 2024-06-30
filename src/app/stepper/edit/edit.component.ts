@@ -25,7 +25,10 @@ export class EditComponent implements OnInit{
 
   ngOnInit()
   {
-    this.eventCategories = this.utilService.eventCategories
+    // this.eventCategories = this.utilService.eventCategories
+    this.eventsService.getAllCategories().subscribe((cats: {value: string, label: string, icon: string}[]) => {
+      this.eventCategories = cats
+    })
     this.eventLocations = this.utilService.eventLocations
 
     

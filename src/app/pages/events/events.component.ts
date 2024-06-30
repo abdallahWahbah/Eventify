@@ -23,12 +23,15 @@ export class EventsComponent implements OnInit{
 
   ngOnInit() 
   {
+    this.eventsService.getAllCategories().subscribe((cats: {value: string, label: string, icon: string}[]) => {
+      this.eventCategories = cats.filter(cat => cat.value !== "default")
+    })
     this.eventsService.getAllEvents().subscribe((allEvents: Event[]) => {
 
       this.isLoading = false;
       if(allEvents.length === 0) return;
 
-      this.eventCategories = this.utilService.eventCategories.filter(cat => cat.value !== "default")
+      // this.eventCategories = this.utilService.eventCategories.filter(cat => cat.value !== "default")
       this.eventLocations = this.utilService.eventLocations.filter(location => location.value !== "default")
 
       const routeModifier = this.route.snapshot.params["modifier"]
